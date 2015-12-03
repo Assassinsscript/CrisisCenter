@@ -21,12 +21,17 @@ class CreateVictimsTable extends Migration
             $table->integer('postal_code');
             $table->string('city');
             $table->string('country');
-            $table->string('telephone1');
-            $table->string('telephone2');
+            $table->string('phone1');
+            $table->string('phone2');
             $table->enum('blood_type', ['O-', 'A-', 'AB-', 'B-', 'B+', 'AB+', 'A+', 'O+']);
             $table->date('birth_date');
             $table->text('contraindication');
+            $table->integer('support_center_id')->unsigned();
             $table->timestamps();
+        });
+
+        Schema::update('victims', function(Blueprint $table){
+            $table->foreign('support_center_id')->references('id')->on('support_centers')->onCreate('cascade')->onDelete('cascade');
         });
     }
 

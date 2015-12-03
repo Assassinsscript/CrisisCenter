@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateHeadquartersTable extends Migration
+class CreateSupportCenterTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,17 +12,17 @@ class CreateHeadquartersTable extends Migration
      */
     public function up()
     {
-        Schema::create('headquarters', function (Blueprint $table) {
+        Schema::create('support_centers', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('crisis_id')->unsigned();
+            $table->integer('headquarters_id')->unsigned();
             $table->string('name')->unique();
             $table->string('gps_lat');
             $table->string('gps_long');
             $table->timestamps();
         });
 
-        Schema::base('headquarters', function(Blueprint $table) {
-            $table->foreign('crisis_id')->references('id')->on('crisis')->onUpdate('cascade')->onDelete('cascade');
+        Schema::base('support_centers', function(Blueprint $table) {
+            $table->foreign('headquarters_id')->references('id')->on('headquarters')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 
@@ -33,6 +33,6 @@ class CreateHeadquartersTable extends Migration
      */
     public function down()
     {
-        Schema::drop('headquarters');
+        Schema::drop('support_centers');
     }
 }

@@ -14,7 +14,13 @@ class CreateInterventionsTable extends Migration
     {
         Schema::create('interventions', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('victim_id')->unsigned();
+            $table->enum('type', ['displacement', 'medication', 'treatment', 'death', 'evacuation']);
             $table->timestamps();
+        });
+
+        Schema::update('interventions', function(Blueprint $table){
+            $table->foreign('victim_id')->references('id')->on('victims')->onCreate('cascade')->onDelete('cascade');
         });
     }
 
