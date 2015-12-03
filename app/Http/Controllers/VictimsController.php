@@ -28,7 +28,9 @@ class VictimsController extends Controller
 
     public function index()
     {
+        $victims = Victim::paginate(20);
 
+        return view('victims.index', compact('victims'));
     }
 
     public function create()
