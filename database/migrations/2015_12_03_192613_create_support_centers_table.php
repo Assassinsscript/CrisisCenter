@@ -12,7 +12,7 @@ class CreateSupportCenterTable extends Migration
      */
     public function up()
     {
-        Schema::create('support_center', function (Blueprint $table) {
+        Schema::create('support_centers', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('headquarters_id')->unsigned();
             $table->string('name');
@@ -21,7 +21,7 @@ class CreateSupportCenterTable extends Migration
             $table->timestamps();
         });
 
-        Schema::base('support_center', function(Blueprint $table) {
+        Schema::base('support_centers', function(Blueprint $table) {
             $table->foreign('headquarters_id')->references('id')->on('headquarters')->onUpdate('cascade')->onDelete('cascade');
         });
     }
@@ -33,6 +33,6 @@ class CreateSupportCenterTable extends Migration
      */
     public function down()
     {
-        Schema::drop('support_center');
+        Schema::drop('support_centers');
     }
 }
