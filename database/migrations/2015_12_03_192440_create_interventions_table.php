@@ -14,6 +14,7 @@ class CreateInterventionsTable extends Migration
     {
         Schema::create('interventions', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('victim_id')->unsigned();
             $table->enum('type', ['displacement', 'medication', 'treatment', 'death', 'evacuation']);
             $table->timestamps();
         });

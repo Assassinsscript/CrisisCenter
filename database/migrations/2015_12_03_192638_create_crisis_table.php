@@ -14,7 +14,7 @@ class CreateCrisisTable extends Migration
     {
         Schema::create('crisis', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
+            $table->string('name')->unique();
             $table->date('begin_date');
             $table->date('end_date')->nullable();
             $table->enum('type', ['natural_disaster', 'attack']);
