@@ -14,14 +14,13 @@ class Crisis extends Model
         'location',
     ];
 
-
     protected $dates = [
         'begin_date',
         'end_date',
     ];
 
-    public function headquarter(){
-        return $this->belongsTo('App\Headquarter');
+    public function headquarter()
+    {
+        return $this->belongsTo(Headquarter::class);
     }
-
 }

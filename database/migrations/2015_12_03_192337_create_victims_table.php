@@ -14,8 +14,8 @@ class CreateVictimsTable extends Migration
     {
         Schema::create('victims', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('last_name');
-            $table->string('firs_name');
+            $table->string('lastname');
+            $table->string('firstname');
             $table->string('gender');
             $table->string('address');
             $table->integer('postal_code');
