@@ -33,6 +33,6 @@ class CreateProductSupportCenterTable extends Migration
      */
     public function down()
     {
-        Schema::drop('stocks');
+        Schema::drop('product_suport_center');
     }
 }
