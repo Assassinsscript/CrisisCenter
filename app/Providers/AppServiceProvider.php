@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Http\Services\StatsService;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -23,6 +24,12 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->singleton(StatsService::class, function ($app) {
+            return new StatsService;
+        });
+
+        $this->app->bind('stats', function ($app) {
+            return app(StatsService::class);
+        });
     }
 }
