@@ -21,7 +21,7 @@ class CreateHeadquartersTable extends Migration
             $table->timestamps();
         });
 
-        Schema::base('headquarters', function(Blueprint $table) {
+        Schema::table('headquarters', function(Blueprint $table) {
             $table->foreign('crisis_id')->references('id')->on('crisis')->onUpdate('cascade')->onDelete('cascade');
         });
     }

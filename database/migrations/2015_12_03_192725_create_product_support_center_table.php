@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateStocksTable extends Migration
+class CreateProductSupportCenterTable extends Migration
 {
     /**
      * Run the migrations.
@@ -20,7 +20,7 @@ class CreateStocksTable extends Migration
             $table->timestamps();
         });
 
-        Schema::base('product_suport_center', function(Blueprint $table) {
+        Schema::table('product_suport_center', function(Blueprint $table) {
             $table->foreign('product_id')->references('id')->on('products')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('support_center_id')->references('id')->on('support_centers')->onUpdate('cascade')->onDelete('cascade');
         });

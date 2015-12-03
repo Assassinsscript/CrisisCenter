@@ -30,7 +30,7 @@ class CreateVictimsTable extends Migration
             $table->timestamps();
         });
 
-        Schema::update('victims', function(Blueprint $table){
+        Schema::table('victims', function(Blueprint $table){
             $table->foreign('support_center_id')->references('id')->on('support_centers')->onCreate('cascade')->onDelete('cascade');
         });
     }

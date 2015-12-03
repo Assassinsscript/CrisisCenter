@@ -19,7 +19,7 @@ class CreateInterventionsTable extends Migration
             $table->timestamps();
         });
 
-        Schema::update('interventions', function(Blueprint $table){
+        Schema::table('interventions', function(Blueprint $table){
             $table->foreign('victim_id')->references('id')->on('victims')->onCreate('cascade')->onDelete('cascade');
         });
     }
