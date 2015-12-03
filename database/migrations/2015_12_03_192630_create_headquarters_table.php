@@ -15,7 +15,7 @@ class CreateHeadquartersTable extends Migration
         Schema::create('headquarters', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('crisis_id')->unsigned();
-            $table->string('name');
+            $table->string('name')->unique();
             $table->string('gps_lat');
             $table->string('gps_long');
             $table->timestamps();
