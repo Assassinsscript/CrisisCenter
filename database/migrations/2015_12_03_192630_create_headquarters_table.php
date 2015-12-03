@@ -14,7 +14,15 @@ class CreateHeadquartersTable extends Migration
     {
         Schema::create('headquarters', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('crisis_id')->unsigned();
+            $table->string('name');
+            $table->string('gps_lat');
+            $table->string('gps_long');
             $table->timestamps();
+        });
+
+        Schema::base('headquarters', function(Blueprint $table) {
+            $table->foreign('crisis_id')->references('id')->on('crisis')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 
