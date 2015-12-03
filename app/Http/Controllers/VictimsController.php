@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Victim;
-use Illuminate\Http\Request;
-
 use App\Http\Requests;
-use App\Http\Controllers\Controller;
+use App\SupportCenter;
+use App\Victim;
 
 class VictimsController extends Controller
 {
@@ -16,13 +14,19 @@ class VictimsController extends Controller
         //index victims
         $router->get('index', [
             'uses' => 'VictimsController@index',
-            'as' => 'victims.index',
+            'as'   => 'victims.index',
         ]);
 
         //create victims
         $router->get('create', [
             'uses' => 'VictimsController@create',
-            'as' => 'victims.create',
+            'as'   => 'victims.create',
+        ]);
+
+        //store victims
+        $router->get('store', [
+            'uses' => 'VictimsController@store',
+            'as'   => 'victims.store',
         ]);
     }
 
@@ -34,7 +38,40 @@ class VictimsController extends Controller
     public function create()
     {
         $victim = new Victim();
+        $cities = [
+            'bordeaux' => 'Bordeaux',
+            'madrid'   => 'Madrid',
+        ];
+        $countries = [
+            'france'  => 'France',
+            'Espagne' => 'Espagne',
+        ];
 
-        return view('victims.create', compact('victim'));
+        $bloodsType = [
+            'O-'  => 'O-',
+            'A-'  => 'A-',
+            'AB-' => 'AB-',
+            'B-'  => 'B-',
+            'B+'  => 'B+',
+            'AB+' => 'AB+',
+            'A+'  => 'A+',
+            'O+'  => 'O+',
+        ];
+
+        $states = [
+            'dead' => 'Mort',
+            'hurt' => 'Bléssé',
+            'waiting' => 'Attente',
+        ];
+
+        $supportCenter = SupportCenter::lists('name', 'id');
+
+
+        return view('victims.create', compact('victim', 'cities', 'countries', 'bloodsType', 'states', 'supportCenter'));
+    }
+
+    public function store(Requests $requests)
+    {
+
     }
 }

@@ -21,6 +21,7 @@ elixir(function(mix) {
     mix.scripts([
         'jquery-2.1.1.js',
         'bootstrap.min.js',
-        'inspinia.js'
+        'inspinia.js',
+        'plugins/jasny/jasny-bootstrap.min.js'
     ], 'public/js/app.min.js')
 });
