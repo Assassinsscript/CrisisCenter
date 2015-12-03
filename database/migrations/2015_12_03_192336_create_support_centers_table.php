@@ -15,7 +15,7 @@ class CreateSupportCentersTable extends Migration
         Schema::create('support_centers', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('headquarters_id')->unsigned();
-            $table->string('name')->unique();
+            $table->string('name');
             $table->string('gps_lat');
             $table->string('gps_long');
             $table->timestamps();

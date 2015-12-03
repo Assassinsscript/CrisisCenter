@@ -24,6 +24,8 @@ class AddStateToVictimsTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('victims', function(Blueprint $table) {
+            $table->dropColumn('state');
+        });
     }
 }

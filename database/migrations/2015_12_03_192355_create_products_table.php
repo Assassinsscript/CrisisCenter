@@ -16,7 +16,7 @@ class CreateProductsTable extends Migration
             $table->increments('id');
             $table->string('name')->unique();
             $table->integer('cdiscount_id')->unique()->unsigned();
-            $table->integer('price')->unsigned();
+            $table->float('price')->unsigned();
             $table->enum('type', ['drug', 'gear', 'paramedical']);
             $table->timestamps();
         });
