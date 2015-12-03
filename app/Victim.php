@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Victims extends Model
+class Victim extends Model
 {
     protected $fillable = [
         'last_name',
@@ -24,4 +24,9 @@ class Victims extends Model
     protected $dates = [
         'birth_date'
     ];
+
+    public function supportCenter(){
+        return $this->belongsTo('App\SupportCenter');
+    }
+
 }
