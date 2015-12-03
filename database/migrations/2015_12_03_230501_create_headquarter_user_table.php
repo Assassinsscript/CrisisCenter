@@ -15,9 +15,9 @@ class CreateHeadquarterUserTable extends Migration
         Schema::create('headquarter_user', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('headquarter_id')->unsigned();
-            $table->integer('headquarter_id')->references('id')->table('headquarters')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('headquarter_id')->references('id')->on('headquarters')->onUpdate('cascade')->onDelete('cascade');
             $table->integer('user_id')->unsigned();
-            $table->integer('user_id')->references('id')->table('users')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }

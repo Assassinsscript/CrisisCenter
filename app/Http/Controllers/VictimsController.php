@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Victim;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -32,6 +33,8 @@ class VictimsController extends Controller
 
     public function create()
     {
+        $victim = new Victim();
 
+        return view('victims.create', compact('victim'));
     }
 }
