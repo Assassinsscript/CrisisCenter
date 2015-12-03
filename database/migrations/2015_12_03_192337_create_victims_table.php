@@ -26,7 +26,12 @@ class CreateVictimsTable extends Migration
             $table->enum('blood_type', ['O-', 'A-', 'AB-', 'B-', 'B+', 'AB+', 'A+', 'O+']);
             $table->date('birth_date');
             $table->text('contraindication');
+            $table->integer('support_center_id');
             $table->timestamps();
+        });
+
+        Schema::update('victims', function(Blueprint $table){
+            $table->foreign('support_center_id')->references('id')->on('support_center')->onCreate('cascade')->onDelete('cascade');
         });
     }
 
