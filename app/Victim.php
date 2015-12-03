@@ -7,8 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Victim extends Model
 {
     protected $fillable = [
-        'last_name',
-        'firs_name',
+        'lastname',
+        'firsname',
         'gender',
         'address',
         'postal_code',

@@ -12,7 +12,7 @@ class AddStateToVictimsTable extends Migration
      */
     public function up()
     {
-        Schema::table('victims', function(Blueprint $table) {
+        Schema::table('victim', function(Blueprint $table) {
            $table->enum('state', ['dead', 'hurt', 'waiting']);
         });
     }
