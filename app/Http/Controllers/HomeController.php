@@ -18,13 +18,15 @@ class HomeController extends Controller
     public function index($productName = null)
     {
         if ($productName === null) {
-            $productName = "Pansements";
+            $productName = "définfectant";
         }
 
         $categories = [
-            'Pansements' => 'Pansements',
-            'Outils' => 'Outils',
-            'Nourriture' => 'Nourriture',
+            'définfectant' => 'Définfectant',
+            'couverture de survie' => 'Couverture de survie',
+            'oreiller' => 'Oreiller',
+            'outils' => 'Outils',
+            'thermomètre' => 'Thermomètre',
         ];
 
         $products = $this->cdiscount->searchToCollection($productName);

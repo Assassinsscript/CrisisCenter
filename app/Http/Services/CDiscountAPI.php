@@ -42,7 +42,7 @@ class CDiscountAPI
         return json_decode($json);
     }
 
-    public function searchToCollection($term, $nbItems = 10)
+    public function searchToCollection($term, $nbItems = 20)
     {
         return $this->extractProducts($this->search($term, $nbItems))->where('BestOffer.Seller.Id', '0');
     }
