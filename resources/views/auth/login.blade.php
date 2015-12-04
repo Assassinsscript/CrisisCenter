@@ -13,6 +13,13 @@
             <p>
                 Veuillez vous identifier
             </p>
+
+            @foreach ($errors->all() as $error)
+                <div class="alert alert-danger">
+                    {{ $error }}
+                </div>
+            @endforeach
+
             {!! Form::open(['url' => 'auth/login', 'class' => 'm-t']) !!}
                 <div class="form-group">
                     {!! Form::text('username', old('username'), ['placeholder' => 'Identifiant', 'class' => 'form-control']) !!}
@@ -23,7 +30,6 @@
                 {!! Form::submit('Connexion', ['class' => 'btn btn-primary block full-width m-b']) !!}
 
             {!! Form::close() !!}
-            {{ dd($errors) }}
         </div>
     </div>
 
