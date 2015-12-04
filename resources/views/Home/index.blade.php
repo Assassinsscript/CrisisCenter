@@ -13,7 +13,7 @@
             </h1>
             <div class="list-group">
             @foreach($categories as $index => $category)
-                <a href="{{ url("$index") }}" class="list-group-item text-center">{{ $category }}</a>
+                <a href="{{ url("$index") }}" class="list-group-item text-center {{ $index == $productName ? 'active' : '' }}">{{ $category }}</a>
             @endforeach
             </div>
         </div>
