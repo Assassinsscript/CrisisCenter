@@ -12,6 +12,7 @@ namespace App\Http\Services;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ServerException;
 use Illuminate\Support\Collection;
+use Session;
 
 class CDiscountAPI
 {
@@ -83,11 +84,11 @@ class CDiscountAPI
         $json = json_decode((string)$response->getBody());
 
         if (!isset($json->CartGUID)) {
-            $this->cartId = null;
+            $this->setCartId(null);
             return false;
         }
 
-        $this->cartId = $json->CartGUID;
+        $this->setCartId($json->CartGUID);
         $this->cartUrl = $json->CheckoutUrl;
         return true;
     }
@@ -148,6 +149,7 @@ class CDiscountAPI
     public function setCartId($cartId)
     {
         $this->cartId = $cartId;
+        Session::put('cartId', $cartId);
         return $this;
     }
 

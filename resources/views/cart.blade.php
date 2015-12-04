@@ -3,9 +3,20 @@
 @section('title', "Panier")
 
 @section('content')
-    <h1>
-        Panier
-    </h1>
+
+    <div class="pull-left">
+        <h1>
+            Panier
+        </h1>
+    </div>
+    <div class="pull-right">
+        <a href="{{ url('/cart/clear') }}" class="btn btn-danger">
+            <i class="fa fa-times"></i> Vider le panier
+        </a>
+    </div>
+
+    <div class="clearfix"></div>
+
     @if ($cart === null)
         <div class="alert alert-danger">
             Vous n'avez pas encore ajouté de produit à votre panier !

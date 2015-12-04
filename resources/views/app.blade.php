@@ -34,6 +34,11 @@
                 </li>
                 <li class="{{ Request::is('cart*') ? 'active' : '' }}">
                     <a href="{{ url('/cart') }}"><i class="fa fa-shopping-cart"></i> <span class="nav-label">Panier</span>
+                        @if ($cart_total > 0)
+                            <span class="label label-primary pull-right">
+                                {{ number_format($cart_total, 2, ',', ' ') }} €
+                            </span>
+                        @endif
                     </a>
                 </li>
             </ul>

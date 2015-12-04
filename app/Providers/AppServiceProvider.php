@@ -45,5 +45,16 @@ class AppServiceProvider extends ServiceProvider
         Intervention::created(function ($intervention) {
             $intervention->createMetas();
         });
+
+        view()->composer('*', function ($view) {
+            $cdiscount = app('cdiscount');
+            $cdiscount->setCartId(\Session::get('cartId', null));
+            $cart = $cdiscount->getCart();
+            if ($cart == null) {
+                $view->with('cart_total', 0);
+            } else {
+                $view->with('cart_total', $cart->TotalPrice);
+            }
+        });
     }
 }

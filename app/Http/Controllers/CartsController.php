@@ -44,4 +44,13 @@ class CartsController extends Controller
         return redirect()->to('cart');
     }
 
+    /**
+     * @Get("/clear")
+     */
+    public function clear()
+    {
+        $this->request->session()->forget('cartId');
+        return redirect()->to('cart');
+    }
+
 }
