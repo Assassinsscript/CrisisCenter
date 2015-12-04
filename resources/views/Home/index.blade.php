@@ -25,14 +25,17 @@
         <div class="col-md-12">
             @forelse($products as $product)
                 <div class="col-md-4">
-                    <div class="thumbnail">
+                    <div class="thumbnail" style="width: 300px; height: 600px; overflow: auto;">
                         <img src="{{ $product->MainImageUrl }}" alt="...">
                         <div class="caption">
                             <h3 class="text-center">{{ str_limit($product->Name, 20) }}</h3>
                             <p class="text-center">{{ str_limit($product->Description, 100) }}</p>
                             <p class="text-center"><a href="{{ $product->BestOffer->ProductURL }}" class="btn btn-primary" role="button">Voir l'offre</a></p>
                             <p class="text-center"><a href="{{ route('addToCart', ['productId' => $product->Id]) }}" class="btn btn-success" role="button">Ajouter au panier</a></p>
-                            <h3 class="text-center text-success">{{ $product->BestOffer->SalePrice }} €</h3>
+                            <p class="text-center">
+                                <strike class="text-danger ">{{ number_format($product->BestOffer->PriceDetails->ReferencePrice, 2, ',', ' ')  }} €</strike>
+                            </p>
+                            <h3 class="text-center text-success"> {{ number_format($product->BestOffer->SalePrice, 2, ',', ' ') }} €</h3>
                         </div>
                     </div>
                 </div>
