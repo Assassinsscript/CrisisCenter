@@ -44,7 +44,7 @@ class CDiscountAPI
 
     public function searchToCollection($term, $nbItems = 10)
     {
-        return $this->extractProducts($this->search($term, $nbItems));
+        return $this->extractProducts($this->search($term, $nbItems))->where('BestOffer.Seller.Id', '0');
     }
 
     public function extractProducts($result)
@@ -95,7 +95,7 @@ class CDiscountAPI
     public function getCart()
     {
         if ($this->cartId === null) {
-            return [];
+            return null;
         }
 
         $response = $this->client->post('https://api.cdiscount.com/OpenApi/json/GetCart', [
