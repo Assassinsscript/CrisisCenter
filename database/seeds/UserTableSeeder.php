@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\User;
 
 class UserTableSeeder extends Seeder
 {
@@ -11,58 +12,64 @@ class UserTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('users')->insert([
+        User::create([
             'username' => 'jbrenaux',
             'password' => 'hidden',
             'email' => 'jbrenaux@gmail.com',
             'phone' => '055611234',
             'firstname' => 'Jean baptiste',
-            'lastname' => 'Renaux'
+            'lastname' => 'Renaux',
+            'role' => 'Admin'
         ]);
 
-        DB::table('users')->insert([
+        User::create([
             'username' => 'jlroux',
             'password' => 'hidden',
             'email' => 'jlroux@hotmail.com',
             'phone' => '055165168',
             'firstname' => 'Jean Louis',
-            'lastname' => 'Roux'
+            'lastname' => 'Roux',
+            'role' => 'PostChief'
         ]);
 
-        DB::table('users')->insert([
+        User::create([
             'username' => 'nprigent',
             'password' => 'hidden',
             'email' => 'nprigent@gmail.com',
             'phone' => '5610156',
             'firstname' => 'Nicole',
-            'lastname' => 'Prigent'
+            'lastname' => 'Prigent',
+            'role' => 'PostChief'
         ]);
 
-        DB::table('users')->insert([
+        User::create([
             'username' => 'mmateo',
             'password' => 'hidden',
             'email' => 'mmateo@gmail.com',
             'phone' => '156161513',
             'firstname' => 'Manu',
-            'lastname' => 'Mateo'
+            'lastname' => 'Mateo',
+            'role' => 'MissionChief'
         ]);
 
-        DB::table('users')->insert([
+        User::create([
             'username' => 'dzqdqzdq',
             'password' => 'hidden',
             'email' => 'dqdqdq@hotmail.com',
             'phone' => '055611234',
             'firstname' => 'dzqdzqdzqdqz',
-            'lastname' => 'dzqdzqdzq'
+            'lastname' => 'dzqdzqdzq',
+            'role' => 'MissionChief'
         ]);
 
-        DB::table('users')->insert([
+        User::create([
             'username' => 'jbon',
             'password' => 'hidden',
             'email' => 'jbon@gmail.com',
             'phone' => '156156312',
             'firstname' => 'Jean',
-            'lastname' => 'Bon'
+            'lastname' => 'Bon',
+            'role' => 'MissionChief'
         ]);
 
     }
