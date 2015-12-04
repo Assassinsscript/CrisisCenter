@@ -22,6 +22,7 @@ elixir(function(mix) {
         'jquery-2.1.1.js',
         'bootstrap.min.js',
         'inspinia.js',
-        'plugins/jasny/jasny-bootstrap.min.js'
+        'plugins/jasny/jasny-bootstrap.min.js',
+        'plugins/metisMenu/jquery.metisMenu.js'
     ], 'public/js/app.min.js')
 });
