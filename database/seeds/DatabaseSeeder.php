@@ -22,7 +22,7 @@ class DatabaseSeeder extends Seeder
         $this->call(ProductsTableSeeder::class);
         $this->call(InterventionsTableSeeder::class);
         $this->call(ProductSupportCenterTableSeeder::class);
-        //$this->call(HeadquarterUserTableSeeder::class);
+        // $this->call(HeadquarterUserTableSeeder::class);
         $this->call(HeadquarterUserSeed::class);
 
         $this->call(SupportCenterUserTableSeeder::class);

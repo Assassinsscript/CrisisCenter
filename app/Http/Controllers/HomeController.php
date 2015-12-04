@@ -17,6 +17,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('index');
+
+        $categories = [
+            '' => 'Pansement'
+        ];
+
+        return view('Home.index', compact('categories'));
     }
 }
