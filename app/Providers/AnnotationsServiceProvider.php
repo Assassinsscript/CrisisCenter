@@ -21,9 +21,9 @@ class AnnotationsServiceProvider extends ServiceProvider {
      * @var array
      */
     protected $scanRoutes = [
-        HomeController::class,
-        VictimsController::class,
         CartsController::class,
+        VictimsController::class,
+        HomeController::class,
     ];
 
     /**

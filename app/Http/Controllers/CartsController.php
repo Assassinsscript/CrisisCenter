@@ -38,7 +38,6 @@ class CartsController extends Controller
      */
     public function add()
     {
-        $this->cdiscount->setCartId($this->request->session()->get('cartId', null));
         $this->cdiscount->pushToCart('MF841FA');
         $this->cdiscount->pushToCart('MJLT2FA');
         $this->request->session()->put('cartId', $this->cdiscount->getCartId());

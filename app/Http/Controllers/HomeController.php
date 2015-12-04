@@ -37,6 +37,7 @@ class HomeController extends Controller
      */
     public function addToCart($productId)
     {
+        $this->cdiscount->setCartId($this->request->session()->get('cartId', null));
         $this->cdiscount->pushToCart($productId);
 
         return redirect()->back()->with('success', 'Article ajouté !');
