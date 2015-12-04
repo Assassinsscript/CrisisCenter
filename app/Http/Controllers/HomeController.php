@@ -13,17 +13,33 @@ use Collective\Annotations\Routing\Annotations\Annotations\Middleware;
 class HomeController extends Controller
 {
     /**
-     * @Get("/")
+     * @Get("/{productName}")
      */
-    public function index()
+    public function index($productName = null)
     {
-
         $categories = [
-            '1' => 'Pansements',
-            '2' => 'Outils',
-            '3' => 'Nourriture',
+            'Pansements' => 'Pansements',
+            'Outils' => 'Outils',
+            'Nourriture' => 'Nourriture',
         ];
 
-        return view('Home.index', compact('categories'));
+
+        $products = $this->cdiscount->searchToCollection($categories['Pansements']);
+        if($productName !== null)
+        {
+            $products = $this->cdiscount->searchToCollection($productName);
+        }
+
+        return view('Home.index', compact('categories', 'products'));
+    }
+
+    /**
+     * @Get("/addToCart/{productId}", as="addToCart")
+     */
+    public function addToCart($productId)
+    {
+        $this->cdiscount->pushToCart($productId);
+
+        return redirect()->back()->with('success', 'Article ajouté !');
     }
 }

@@ -9,9 +9,14 @@
                             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                             <span class="clear">
                                 <span class="block m-t-xs">
-                                    <strong class="font-bold">David Williams</strong>
+                                    <strong class="font-bold">
+                                        <p class="text-center">
+                                            {{ \Auth::user()->username }}
+                                            <span class="text-muted text-xs block">{{ \Auth::user()->role }}<b class="caret"></b></span>
+                                        </p>
+
+                                    </strong>
                                 </span>
-                                <span class="text-muted text-xs block">Art Director <b class="caret"></b>
                                 </span>
                             </span>
                             </a>
