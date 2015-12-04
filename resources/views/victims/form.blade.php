@@ -1,20 +1,12 @@
 <div class="ibox float-e-margins">
     <div class="ibox-title">
         <h2 class="text-center">
-            @if($victim->exists)
-                Modification d'un victime
-            @else
-                Création d'une victime
-            @endif
+            Prise en charge d'une victime
         </h2>
     </div>
 
     <div class="ibox-content">
-        @if($victim->exists)
-            {!! Form::open(['url' => ['victim.update', $victim->id], 'class' => 'form-horizontal']) !!}
-        @else
-            {!! Form::open(['url' => ['victim.store'], 'class' => 'form-horizontal']) !!}
-        @endif
+            {!! Form::open(['url' => URL::full(), 'class' => 'form-horizontal']) !!}
 
             <p class="text-right"><i class="text-navy">* Champs obligatoires</i></p>
 
@@ -123,7 +115,7 @@
 
             <div class="form-group">
                 <div class="col-md-3">
-                    {!! Form::label('blood_type', 'Pays :', ['class' => 'control-label']) !!}
+                    {!! Form::label('blood_type', 'Groupe sanguin :', ['class' => 'control-label']) !!}
                     <i class="text-navy">*</i>
                 </div>
                 <div class="col-md-9">
@@ -133,7 +125,7 @@
 
             <div class="form-group">
                 <div class="col-md-3">
-                    {!! Form::label('birth_date', 'Fin de blessure :', ['class' => 'control-label']) !!}
+                    {!! Form::label('birth_date', 'Date de naissance :', ['class' => 'control-label']) !!}
                     <i class="text-navy">*</i>
                 </div>
 
