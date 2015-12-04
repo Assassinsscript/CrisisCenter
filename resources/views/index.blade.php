@@ -22,6 +22,11 @@
                     It is an application skeleton for a typical web app. You can use it to quickly bootstrap your webapp projects and dev environment for these projects.
                 </small>
             </div>
+            <div>
+                <p>
+                    <a href="{{ URL::to('victims/index') }}"><button type="button" class="btn btn-primary">Victim platform</button></a>
+                </p>
+            </div>
         </div>
     </div>
 @stop

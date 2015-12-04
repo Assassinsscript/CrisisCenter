@@ -12,7 +12,7 @@ class CreateProductSupportCenterTable extends Migration
      */
     public function up()
     {
-        Schema::create('product_suport_center', function (Blueprint $table) {
+        Schema::create('product_support_center', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('stock')->unsigned();
             $table->integer('product_id')->unsigned();
@@ -20,7 +20,7 @@ class CreateProductSupportCenterTable extends Migration
             $table->timestamps();
         });
 
-        Schema::table('product_suport_center', function(Blueprint $table) {
+        Schema::table('product_support_center', function(Blueprint $table) {
             $table->foreign('product_id')->references('id')->on('products')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('support_center_id')->references('id')->on('support_centers')->onUpdate('cascade')->onDelete('cascade');
         });
@@ -33,6 +33,6 @@ class CreateProductSupportCenterTable extends Migration
      */
     public function down()
     {
-        Schema::drop('product_suport_center');
+        Schema::drop('product_support_center');
     }
 }

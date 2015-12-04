@@ -21,6 +21,6 @@ class Crisis extends Model
 
     public function headquarter()
     {
-        return $this->belongsTo(Headquarter::class);
+        return $this->hasOne(Headquarter::class);
     }
 }
