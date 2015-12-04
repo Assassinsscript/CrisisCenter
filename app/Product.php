@@ -11,4 +11,10 @@ class Product extends Model
         'price',
         'type',
     ];
+
+    public function support_centers()
+    {
+        return $this->belongsToMany(SupportCenter::class)->withPivot('stock');
+    }
+
 }

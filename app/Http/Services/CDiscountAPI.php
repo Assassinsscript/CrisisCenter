@@ -10,78 +10,122 @@ namespace App\Http\Services;
 
 
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\ServerException;
+use Illuminate\Support\Collection;
 
 class CDiscountAPI
 {
 
-    private $guzzleClient;
-    private static $URL_API = "https://api.cdiscount.com/OpenApi/json/";
-    private static $URL_API_SEARCH = "Search";
-    private static $KEY_API = "ebd2606b-38ad-4dde-8ec9-4545512b2dbf";
+    protected $cartId;
+    protected $cartUrl;
 
+    public function __construct()
+    {
+        $this->client = new Client(['cookies' => true]);
 
-    public function __construct(){
-        $this->guzzleClient = new Client([ 'base_uri' => self::getSearchRequest()]);
-        $request = $this->guzzleClient->request('POST', self::getSearchRequest(), self::testRequest() );
-
-        var_dump( $request->getBody());
-        /*$request = $this->guzzleClient->post(self::getSearchRequest(),array(
-            'content-type' => 'application/json'
-        ),array());
-        $request->setBody(json_encode(self::testRequest())); #set body!
-        $response = $request->send();*/
-
-
-        //var_dump( $response);
     }
 
+    public function search($term, $nbItems = 10)
+    {
+    $response = $this->client->post('https://api.cdiscount.com/OpenApi/json/Search', [
+        'body' => json_encode($this->parameters([
+            'SearchRequest' => [
+                'Keyword' => $term,
+                'Pagination' => ['ItemsPerPage' => $nbItems, 'PageNumber' => 0],
+                'SortBy' => 'relevance',
+            ]
+        ]))
+    ]);
 
+        $json =  (string)$response->getBody();
 
-    public static function testRequest(){
-        return self::parametersConstructor("tablette", "relevance", 5, 1, 0, 400, "computers");
+        return json_decode($json);
     }
 
-    public static function parametersConstructor($keyword, $sortBy, $itemsPerPage, $pageNumber = 1, $minPrice = null, $maxPrice = null, $navigation="", $includeMarketPlace=false, $condition=null){
-
-        $parameters = array(
-            "ApiKey" => self::$KEY_API,
-            "SearchRequest" => array(
-                "Keyword"=> $keyword,
-                "SortBy"=> $sortBy,
-                "Pagination"=> array(
-                    "ItemsPerPage"=> $itemsPerPage,
-                    "PageNumber"=> $pageNumber),
-                "Filters"=> array(
-                    "Price"=> array(
-                        "Min"=> $minPrice,
-                        "Max"=> $maxPrice
-                    ),
-                    "Navigation"=> $navigation,
-                    "IncludeMarketPlace"=> $includeMarketPlace,
-                    // TODO Brands
-                    "Condition"=> $condition
-                )
-            )
-        );
-
-
-        return $parameters;
+    public function searchToCollection($term, $nbItems = 10)
+    {
+        return $this->extractProducts($this->search($term, $nbItems));
     }
 
-
-
-
-
-    private static function getSearchRequest(){
-        return self::$URL_API . self::$URL_API_SEARCH;
+    public function extractProducts($result)
+    {
+        return new Collection($result->Products);
     }
 
+    public function parameters($body = [])
+    {
+        return array_merge([
+            'ApiKey' => env('CDISCOUNT_API_KEY'),
+        ], $body);
+    }
 
+    public function pushToCart($productId, $quantity = 1)
+    {
+        $request = [
+            'ProductId' => $productId,
+            'Quantity' => $quantity,
+            'OfferId' => '',
+            'SellerId' => '',
+        ];
 
+        if ($this->cartId !== null) {
+            $request['CartGUID'] = $this->cartId;
+        }
 
+        $body = $this->parameters([
+            'PushToCartRequest' => $request
+        ]);
 
+        $response = $this->client->post('https://api.cdiscount.com/OpenApi/json/PushToCart', [
+            'body' => json_encode($body)
+        ]);
 
+        $json = json_decode((string)$response->getBody());
 
+        if (!isset($json->CartGUID)) {
+            $this->cartId = null;
+            return false;
+        }
+
+        $this->cartId = $json->CartGUID;
+        $this->cartUrl = $json->CheckoutUrl;
+        return true;
+    }
+
+    public function getCart()
+    {
+        if ($this->cartId === null) {
+            return [];
+        }
+
+        $response = $this->client->post('https://api.cdiscount.com/OpenApi/json/GetCart', [
+            'body' => json_encode($this->parameters([
+                'CartRequest' => [
+                    'CartGUID' => $this->cartId,
+                ]
+            ]))
+        ]);
+
+        $json =  (string)$response->getBody();
+
+        return json_decode($json);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCartId()
+    {
+        return $this->cartId;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCartUrl()
+    {
+        return $this->cartUrl;
+    }
 
 
 }
