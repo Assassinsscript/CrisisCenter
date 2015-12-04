@@ -11,7 +11,8 @@
         "artesaos/defender": "^0.4.3",
         "laravelcollective/html": "5.1.x",
         "barryvdh/laravel-ide-helper": "^2.1",
-        "doctrine/dbal": "~2.3"
+        "doctrine/dbal": "~2.3",
+        "guzzlehttp/guzzle": "6.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
