@@ -15,7 +15,7 @@ class CreateProductsTable extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name')->unique();
-            $table->integer('cdiscount_id')->unique()->unsigned();
+            $table->string('cdiscount_id')->unique();
             $table->float('price')->unsigned();
             $table->enum('type', ['drug', 'gear', 'paramedical']);
             $table->timestamps();

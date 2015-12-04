@@ -16,7 +16,7 @@ class CreateVictimsTable extends Migration
             $table->increments('id');
             $table->string('lastname');
             $table->string('firstname');
-            $table->string('gender');
+            $table->enum('gender', ['Male', 'Female', 'Undefined']);
             $table->string('address');
             $table->integer('postal_code');
             $table->string('city');
