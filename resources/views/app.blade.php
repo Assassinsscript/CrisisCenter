@@ -1,4 +1,5 @@
 @extends('layout')
+@inject('cdiscount', 'cdiscount')
 
 @section('body')
     <nav class="navbar-default navbar-static-side" role="navigation">
@@ -28,8 +29,12 @@
                         IN+
                     </div>
                 </li>
-                <li class="active">
+                <li class="{{ Request::is('/') ? 'active' : '' }}">
                     <a href="{{ url('/') }}"><i class="fa fa-home"></i> <span class="nav-label">Accueil</span></a>
+                </li>
+                <li class="{{ Request::is('cart*') ? 'active' : '' }}">
+                    <a href="{{ url('/cart') }}"><i class="fa fa-shopping-cart"></i> <span class="nav-label">Panier</span>
+                    </a>
                 </li>
             </ul>
 

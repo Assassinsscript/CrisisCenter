@@ -1,5 +1,6 @@
 <?php namespace App\Providers;
 
+use App\Http\Controllers\CartsController;
 use App\Http\Controllers\CartsProducts;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\VictimsController;
@@ -22,7 +23,7 @@ class AnnotationsServiceProvider extends ServiceProvider {
     protected $scanRoutes = [
         HomeController::class,
         VictimsController::class,
-        CartsProducts::class,
+        CartsController::class,
     ];
 
     /**

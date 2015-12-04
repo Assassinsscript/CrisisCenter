@@ -111,6 +111,20 @@ class CDiscountAPI
         return json_decode($json);
     }
 
+
+    public function getCollectionFromCart($cart)
+    {
+        $collection = new Collection();
+        if ($cart->ProductCount == 1) {
+            $collection = new Collection([$cart->Items->CartLine]);
+        } elseif ($cart->ProductCount > 1) {
+            $collection = new Collection($cart->Items->CartLine);
+        }
+
+        return $collection->keyBy('ProductId');
+    }
+
+
     /**
      * @return mixed
      */
@@ -125,6 +139,43 @@ class CDiscountAPI
     public function getCartUrl()
     {
         return $this->cartUrl;
+    }
+
+    /**
+     * @param mixed $cartId
+     * @return CDiscountAPI
+     */
+    public function setCartId($cartId)
+    {
+        $this->cartId = $cartId;
+        return $this;
+    }
+
+    public function getProduct($products = [])
+    {
+        if (!is_array($products)) {
+            $products = [$products];
+        }
+
+        $body = json_encode($this->parameters([
+            'ProductRequest' => [
+                'ProductIdList' => $products,
+                'Scope' => [
+                    'Offers' => false,
+                    "AssociatedProducts" => false,
+                    'Images' => true,
+                    "Ean" => false
+                ]
+            ]
+        ]));
+
+        $response = $this->client->post('https://api.cdiscount.com/OpenApi/json/GetProduct', [
+            'body' => $body
+        ]);
+
+        $json =  (string)$response->getBody();
+
+        return with(new Collection(json_decode($json)->Products))->keyBy('Id');
     }
 
 
