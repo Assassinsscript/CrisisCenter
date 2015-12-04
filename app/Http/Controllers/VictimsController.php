@@ -2,34 +2,24 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests;
 use App\SupportCenter;
 use App\Victim;
+use Collective\Annotations\Routing\Annotations\Annotations\Get;
+use Collective\Annotations\Routing\Annotations\Annotations\Post;
 
+
+/**
+ * Class VictimsController
+ * @package App\Http\Controllers
+ * @Controller(prefix="victims")
+ */
 class VictimsController extends Controller
 {
-    public static function routes($router)
-    {
-
-        //index victims
-        $router->get('index', [
-            'uses' => 'VictimsController@index',
-            'as'   => 'victims.index',
-        ]);
-
-        //create victims
-        $router->get('create', [
-            'uses' => 'VictimsController@create',
-            'as'   => 'victims.create',
-        ]);
-
-        //store victims
-        $router->get('store', [
-            'uses' => 'VictimsController@store',
-            'as'   => 'victims.store',
-        ]);
-    }
-
+    /**
+     * @Get("index")
+     */
     public function index()
     {
         $victims = Victim::paginate(20);
@@ -37,6 +27,9 @@ class VictimsController extends Controller
         return view('victims.index', compact('victims'));
     }
 
+    /**
+     * @Get("create")
+     */
     public function create()
     {
         $victim = new Victim();
@@ -68,12 +61,33 @@ class VictimsController extends Controller
 
         $supportCenter = SupportCenter::lists('name', 'id');
 
-
         return view('victims.create', compact('victim', 'cities', 'countries', 'bloodsType', 'states', 'supportCenter'));
     }
 
-    public function store(Requests $requests)
+    /**
+     * @Post("create")
+     */
+    public function store()
     {
+        $this->validate($this->request, [
+            'lastname' => 'required',
+            'firstname' => 'required',
+            'gender' => 'required|in:man,woman',
+            'address' => 'required',
+            'postal_code' => 'required',
+            'city' => 'required',
+            'country' => 'required',
+            'phone1' => 'required',
+            'phone2' => 'required',
+            'blood_type' => 'required',
+            'birth_date' => 'required|date_format:d/m/Y',
+            'contraindication' => 'required',
+            'state' => 'required',
+            'support_center_id' => 'required|exists:support_centers,id',
+        ]);
 
+        Victim::create($this->request->all());
+
+        return redirect()->to('victims/create')->with('success', 'La victime est bien prise en charge.');
     }
 }

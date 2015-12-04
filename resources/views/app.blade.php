@@ -50,6 +50,11 @@
             </nav>
         </div>
         <div class="wrapper wrapper-content animated fadeInRight">
+            <div class="row">
+                <div class="col-md-12">
+                    @include('flash')
+                </div>
+            </div>
             @yield('content')
         </div>
         <div class="footer">

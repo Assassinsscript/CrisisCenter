@@ -5,7 +5,11 @@ namespace App\Http\Controllers;
 
 
 use Collective\Annotations\Routing\Annotations\Annotations\Get;
+use Collective\Annotations\Routing\Annotations\Annotations\Middleware;
 
+/**
+ * @Middleware("auth")
+ */
 class HomeController extends Controller
 {
     /**

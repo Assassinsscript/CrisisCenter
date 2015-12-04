@@ -6,10 +6,20 @@ use Illuminate\Database\Eloquent\Model;
 
 class Headquarter extends Model
 {
-    protected $fillable = array('name', 'gps_lat', 'gps_long');
+    protected $fillable = ['name', 'gps_lat', 'gps_long'];
 
     public function crisis()
     {
-        return $this->hasMany('App\Crisis');
+        return $this->belongsTo(Crisis::class);
+    }
+
+    public function support_centers()
+    {
+        return $this->hasMany(SupportCenter::class);
+    }
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class);
     }
 }

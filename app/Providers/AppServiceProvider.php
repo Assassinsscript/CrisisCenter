@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Http\Services\StatsService;
+use App\Intervention;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -30,6 +31,10 @@ class AppServiceProvider extends ServiceProvider
 
         $this->app->bind('stats', function ($app) {
             return app(StatsService::class);
+        });
+
+        Intervention::created(function ($intervention) {
+            $intervention->createMetas();
         });
     }
 }
