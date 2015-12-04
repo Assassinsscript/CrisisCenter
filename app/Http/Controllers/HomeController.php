@@ -19,7 +19,9 @@ class HomeController extends Controller
     {
 
         $categories = [
-            '' => 'Pansement'
+            '1' => 'Pansements',
+            '2' => 'Outils',
+            '3' => 'Nourriture',
         ];
 
         return view('Home.index', compact('categories'));

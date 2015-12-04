@@ -7,20 +7,18 @@
 @section('content')
 
     <div class="row">
-        <div class="col-lg-12">
-            <div class="text-center m-t-lg">
-                <h1>
-                    Welcome in INSPINIA Static SeedProject
-                </h1>
-                <small>
-                    It is an application skeleton for a typical web app. You can use it to quickly bootstrap your webapp projects and dev environment for these projects.
-                </small>
+        <div class="col-md-3">
+            <h2 class="text-center">
+                Catégories
+            </h2>
+            <div class="list-group">
+            @foreach($categories as $index => $category)
+                <a href="#" class="list-group-item">{{ $category }}</a>
+            @endforeach
             </div>
-            <div>
-                <p>
-                    <a href="{{ URL::to('victims/index') }}"><button type="button" class="btn btn-primary">Victim platform</button></a>
-                </p>
-            </div>
+        </div>
+        <div class="col-md-10">
+
         </div>
     </div>
 @stop
