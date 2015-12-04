@@ -18,11 +18,10 @@ class HomeController extends Controller
     public function index($productName = null)
     {
         if ($productName === null) {
-            $productName = "définfectant";
+            $productName = "couverture de survie";
         }
 
         $categories = [
-            'définfectant' => 'Définfectant',
             'couverture de survie' => 'Couverture de survie',
             'oreiller' => 'Oreiller',
             'outils' => 'Outils',
