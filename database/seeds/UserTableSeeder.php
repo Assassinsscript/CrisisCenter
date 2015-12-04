@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\User;
 
 class UserTableSeeder extends Seeder
 {
@@ -11,7 +12,7 @@ class UserTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('users')->insert([
+        User::create([
             'username' => 'jbrenaux',
             'password' => 'hidden',
             'email' => 'jbrenaux@gmail.com',
@@ -20,7 +21,7 @@ class UserTableSeeder extends Seeder
             'lastname' => 'Renaux'
         ]);
 
-        DB::table('users')->insert([
+        User::create([
             'username' => 'jlroux',
             'password' => 'hidden',
             'email' => 'jlroux@hotmail.com',
@@ -29,7 +30,7 @@ class UserTableSeeder extends Seeder
             'lastname' => 'Roux'
         ]);
 
-        DB::table('users')->insert([
+        User::create([
             'username' => 'nprigent',
             'password' => 'hidden',
             'email' => 'nprigent@gmail.com',
@@ -38,7 +39,7 @@ class UserTableSeeder extends Seeder
             'lastname' => 'Prigent'
         ]);
 
-        DB::table('users')->insert([
+        User::create([
             'username' => 'mmateo',
             'password' => 'hidden',
             'email' => 'mmateo@gmail.com',
@@ -47,7 +48,7 @@ class UserTableSeeder extends Seeder
             'lastname' => 'Mateo'
         ]);
 
-        DB::table('users')->insert([
+        User::create([
             'username' => 'dzqdqzdq',
             'password' => 'hidden',
             'email' => 'dqdqdq@hotmail.com',
@@ -56,7 +57,7 @@ class UserTableSeeder extends Seeder
             'lastname' => 'dzqdzqdzq'
         ]);
 
-        DB::table('users')->insert([
+        User::create([
             'username' => 'jbon',
             'password' => 'hidden',
             'email' => 'jbon@gmail.com',

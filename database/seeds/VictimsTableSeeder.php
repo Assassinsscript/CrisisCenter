@@ -11,7 +11,7 @@ class VictimsTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('victims')->insert([
+        \DB::table('victims')->insert([
             'lastname' => 'Jean',
             'firstname' => 'Bon',
             'gender' => 'Male',
@@ -28,7 +28,7 @@ class VictimsTableSeeder extends Seeder
             'state' => 'DEAD'
         ]);
 
-        DB::table('victims')->insert([
+        \DB::table('victims')->insert([
             'lastname' => 'Chuck',
             'firstname' => 'Norris',
             'gender' => 'Male',
@@ -45,7 +45,7 @@ class VictimsTableSeeder extends Seeder
             'state' => 'WAITING'
         ]);
 
-        DB::table('victims')->insert([
+        \DB::table('victims')->insert([
             'lastname' => 'Jean',
             'firstname' => 'Bon',
             'gender' => 'Male',
@@ -62,7 +62,7 @@ class VictimsTableSeeder extends Seeder
             'state' => 'DEAD'
         ]);
 
-        DB::table('victims')->insert([
+        \DB::table('victims')->insert([
             'lastname' => 'Jean',
             'firstname' => 'Bon',
             'gender' => 'Male',
@@ -79,7 +79,7 @@ class VictimsTableSeeder extends Seeder
             'state' => 'DEAD'
         ]);
 
-        DB::table('victims')->insert([
+        \DB::table('victims')->insert([
             'lastname' => 'Jean',
             'firstname' => 'Bon',
             'gender' => 'Male',
@@ -96,7 +96,7 @@ class VictimsTableSeeder extends Seeder
             'state' => 'DEAD'
         ]);
 
-        DB::table('victims')->insert([
+        \DB::table('victims')->insert([
             'lastname' => 'Jean',
             'firstname' => 'Bon',
             'gender' => 'Male',
@@ -113,7 +113,7 @@ class VictimsTableSeeder extends Seeder
             'state' => 'DEAD'
         ]);
 
-        DB::table('victims')->insert([
+        \DB::table('victims')->insert([
             'lastname' => 'Philipe',
             'firstname' => 'Stark',
             'gender' => 'Male',
@@ -130,7 +130,7 @@ class VictimsTableSeeder extends Seeder
             'state' => 'DEAD'
         ]);
 
-        DB::table('victims')->insert([
+        \DB::table('victims')->insert([
             'lastname' => 'Jeanne',
             'firstname' => 'Eléou',
             'gender' => 'Female',

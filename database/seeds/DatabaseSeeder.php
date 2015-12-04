@@ -14,19 +14,72 @@ class DatabaseSeeder extends Seeder
     {
         Model::unguard();
 
-        $this->call("UserTableSeeder::class");
-        $this->call("CrisisTableSeeder::class");
-        $this->call("HeadquartersTableSeeder::class");
-        $this->call("SupportCentersTableSeeder::class");
-        $this->call("VictimsTableSeeder::class");
-        $this->call("ProductsTableSeeder::class");
-        $this->call("InterventionsTableSeeder::class");
-        $this->call("ProductSupportCenterTableSeeder::class");
-        $this->call("HeadquarterUserTableSeeder::class");
-        $this->call("SupportCenterUserTableSeeder::class");
+        $this->call(UserTableSeeder::class);
+        $this->call(CrisisTableSeeder::class);
+        $this->call(HeadquartersTableSeeder::class);
+        $this->call(SupportCentersTableSeeder::class);
+        $this->call(VictimsTableSeeder::class);
+        $this->call(ProductsTableSeeder::class);
+        $this->call(InterventionsTableSeeder::class);
+        $this->call(ProductSupportCenterTableSeeder::class);
+        //$this->call(HeadquarterUserTableSeeder::class);
+        $this->call(HeadquarterUserSeed::class);
+
+        $this->call(SupportCenterUserTableSeeder::class);
 
         // $this->call(UserTableSeeder::class);
 
         Model::reguard();
+    }
+}
+
+class HeadquarterUserSeed extends Seeder
+{
+    public function run()
+    {
+        \DB::table('headquarter_user')->insert([
+            'headquarter_id' => '1',
+            'user_id' => '2'
+        ]);
+
+        \DB::table('headquarter_user')->insert([
+            'headquarter_id' => '1',
+            'user_id' => '4'
+        ]);
+
+        \DB::table('headquarter_user')->insert([
+            'headquarter_id' => '1',
+            'user_id' => '1'
+        ]);
+
+        \DB::table('headquarter_user')->insert([
+            'headquarter_id' => '2',
+            'user_id' => '2'
+        ]);
+
+        \DB::table('headquarter_user')->insert([
+            'headquarter_id' => '2',
+            'user_id' => '3'
+        ]);
+
+        \DB::table('headquarter_user')->insert([
+            'headquarter_id' => '2',
+            'user_id' => '4'
+        ]);
+
+        \DB::table('headquarter_user')->insert([
+            'headquarter_id' => '2',
+            'user_id' => '5'
+        ]);
+
+        \DB::table('headquarter_user')->insert([
+            'headquarter_id' => '3',
+            'user_id' => '1'
+        ]);
+
+        \DB::table('headquarter_user')->insert([
+            'headquarter_id' => '3',
+            'user_id' => '2'
+        ]);
     }
 }
