@@ -28,12 +28,12 @@
                     <div class="thumbnail" style="width: 300px; height: 600px; overflow: auto;">
                         <img src="{{ $product->MainImageUrl }}" alt="...">
                         <div class="caption">
-                            <h3 class="text-center">{{ str_limit($product->Name, 20) }}</h3>
+                            <h2 class="text-center">{{ str_limit($product->Name, 20) }}</h2>
                             <p class="text-center">{{ str_limit($product->Description, 100) }}</p>
                             <p class="text-center"><a href="{{ $product->BestOffer->ProductURL }}" class="btn btn-primary" role="button">Voir l'offre</a></p>
                             <p class="text-center"><a href="{{ route('addToCart', ['productId' => $product->Id]) }}" class="btn btn-success" role="button">Ajouter au panier</a></p>
                             <p class="text-center">
-                                <strike class="text-danger ">{{ number_format($product->BestOffer->PriceDetails->ReferencePrice, 2, ',', ' ')  }} €</strike>
+                                <span class="text-danger strike">{{ number_format($product->BestOffer->PriceDetails->ReferencePrice, 2, ',', ' ')  }} €</span>
                             </p>
                             <h3 class="text-center text-success"> {{ number_format($product->BestOffer->SalePrice, 2, ',', ' ') }} €</h3>
                         </div>

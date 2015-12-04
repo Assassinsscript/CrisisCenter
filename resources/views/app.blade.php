@@ -26,7 +26,7 @@
                             </ul>
                     </div>
                     <div class="logo-element">
-                        IN+
+                        CC
                     </div>
                 </li>
                 <li class="{{ Request::is('/') ? 'active' : '' }}">
